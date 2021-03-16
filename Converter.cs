@@ -25,7 +25,7 @@ public class BaseConverter : JsonConverter<IBase> {
 
     public IBase? ReadBase(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
     {
-		var r = reader;
+        var r = reader;
 
         // Peek into the "type" attribute
         if (r.TokenType != JsonTokenType.StartObject) throw new JsonException();
@@ -42,7 +42,7 @@ public class BaseConverter : JsonConverter<IBase> {
         mapping.TryGetValue(t ?? "", out Type? type);
         if (type == null) throw new JsonException($"{t} is not a recognized type");
 
-		return (IBase?) JsonSerializer.Deserialize(ref reader, type, options);
+        return (IBase?) JsonSerializer.Deserialize(ref reader, type, options);
     }
 
     public override void Write(Utf8JsonWriter writer, IBase value, JsonSerializerOptions options)
